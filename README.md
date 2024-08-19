@@ -1,0 +1,2 @@
+# NetFlixGpt
+NetFlix clone project
