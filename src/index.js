@@ -6,6 +6,9 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  //for this strictmode many api calls are called two times for various cross checking
+  // but it happens only development phase ...besides <React.StrictMode></React.StrictMode> 
+  //can simply eliminated.
   <React.StrictMode>
     <App />
   </React.StrictMode>
