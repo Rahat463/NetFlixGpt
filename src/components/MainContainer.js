@@ -9,8 +9,8 @@ function MainContainer() {
 console.log("in mainddd:", movie?.id)
 const movieId =  encodeURIComponent(movie?.id);
   // console.log("key: ", key)
-  console.log("in main idddd:", movieId)
-  console.log(movie)
+  //console.log("in main idddd:", movieId)
+  //console.log(movie)
   return (
     <div>
       <VideoTitle

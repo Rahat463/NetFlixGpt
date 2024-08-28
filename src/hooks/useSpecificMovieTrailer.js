@@ -1,20 +1,20 @@
 import React, { useEffect } from "react"
 import { options } from "../utils/contants"
 import { useDispatch } from "react-redux"
-import { addTrailer } from "../utils/moviesSlice"
+import { addSpecificMovieTrailer } from "../utils/moviesSlice"
 
-function useMoviesVideos(movieId) {
+function useSpecificMovieTrailer(movieId) {
   const dispatch = useDispatch()
   const link="https://api.themoviedb.org/3/movie/"+movieId+"/videos?language=en-US"
   //console.log("props:", movieId)
-  //console.log("link:",link)
+ // console.log("link:",link)
   const fetchMovieVideos = async () => {
     const response = await fetch(
       link,
       options
     ).catch((e)=>console.log(e.message))
     const json = await response?.json()
-    //console.log("useMovie: ",json)
+   // console.log("useMovie: ",json)
     
     if(json?.results)  {const filterMovies = json?.results?.filter(
         (video) => video.type === "Trailer"
@@ -22,14 +22,14 @@ function useMoviesVideos(movieId) {
      // console.log("filter", filterMovies, "\n results: ", json?.results)
       const trailer = filterMovies ? filterMovies[0] : json?.results[0]
 
-      dispatch(addTrailer(trailer))
+      dispatch(addSpecificMovieTrailer(trailer))
     }
   }
 
   useEffect(() => {
-  //  console.log("in id: ",movieId)
+   // console.log("in id: ",movieId)
     fetchMovieVideos()
   }, [movieId])
 }
 
-export default useMoviesVideos
+export default useSpecificMovieTrailer

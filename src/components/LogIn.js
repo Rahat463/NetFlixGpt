@@ -17,8 +17,9 @@ import { provider } from "../utils/firebase"
 import { updateProfile } from "firebase/auth"
 import { useDispatch } from "react-redux"
 import { addUser } from "../utils/authSlice"
+import Footer from "./Footer"
 const LogIn = () => {
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
   const [isSignIn, setIsSignIn] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
   //const [emptyFieldMessage, setEmptyFieldMessage] = useState("")
@@ -34,31 +35,31 @@ const LogIn = () => {
     setIsSignIn(!isSignIn)
   }
 
-  const handleFacebookClick = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // The signed-in user info.
-        const user = result.user
+  // const handleFacebookClick = () => {
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       // The signed-in user info.
+  //       const user = result.user
 
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        const credential = FacebookAuthProvider.credentialFromResult(result)
-        const accessToken = credential.accessToken
+  //       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+  //       const credential = FacebookAuthProvider.credentialFromResult(result)
+  //       const accessToken = credential.accessToken
 
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code
-        const errorMessage = error.message
-        // The email of the user's account used.
-        const email = error.customData.email
-        // The AuthCredential type that was used.
-        const credential = FacebookAuthProvider.credentialFromError(error)
+  //       // IdP data available using getAdditionalUserInfo(result)
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       // Handle Errors here.
+  //       const errorCode = error.code
+  //       const errorMessage = error.message
+  //       // The email of the user's account used.
+  //       const email = error.customData.email
+  //       // The AuthCredential type that was used.
+  //       const credential = FacebookAuthProvider.credentialFromError(error)
 
-        // ...
-      })
-  }
+  //       // ...
+  //     })
+  // }
 
   const handleButtonClick = () => {
     const message = validate(email.current.value, password.current.value)
@@ -80,15 +81,15 @@ const LogIn = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user
-          console.log("userUPup: ",user," auth.currentUser: ",auth.currentUser)
-          console.log("name : ",name.current.value)
+          //console.log("userUPup: ",user," auth.currentUser: ",auth.currentUser)
+          //console.log("name : ",name.current.value)
          if(auth.currentUser) updateProfile(auth.currentUser, {
             displayName: name.current.value,
             photoURL:  PROFILE_URL ,
           })
             .then(() => {
               // Profile updated!
-              console.log("userUP: ",user)
+              //console.log("userUP: ",user)
               const { uid, email, displayName, photoURL } = auth.currentUser
               dispatch(
                 addUser({
@@ -99,7 +100,7 @@ const LogIn = () => {
                 })
               )
 
-              console.log("update profile!")
+              //console.log("update profile!")
               // ...
             })
             .catch((error) => {
@@ -133,14 +134,14 @@ const LogIn = () => {
 
         //  navigate("/Browse")
 
-          console.log(user)
+         // console.log(user)
           // ...
         })
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
           setErrorMessage(errorCode + errorMessage)
-          console.log(errorCode + errorMessage)
+         // console.log(errorCode + errorMessage)
         })
     }
   }
@@ -200,36 +201,16 @@ const LogIn = () => {
               <h1 className="ml-28">Or</h1>
             </p>
 
-            <button
-              className="bg-transparent text-white rounded p-2 my-4 w-full flex items-center bg-blue-800/70  "
-              onClick={handleFacebookClick}
-            >
-              <svg
-                viewBox="0 0 36 36"
-                className="x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq x19dipnz"
-                height="40"
-                width="40"
-              >
-                <path
-                  d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.442 5.811 15.526 13.652 17.471L14 34h5.5l.681 1.87Z"
-                  fill="#1877f2"
-                ></path>
-                <path
-                  className="xe3v8dz"
-                  d="M13.651 35.471v-11.97H9.936V18h3.715v-2.37c0-6.127 2.772-8.964 8.784-8.964 1.138 0 3.103.223 3.91.446v4.983c-.425-.043-1.167-.065-2.081-.065-2.952 0-4.09 1.116-4.09 4.025V18h5.883l-1.008 5.5h-4.867v12.37a18.183 18.183 0 0 1-6.53-.399Z"
-                  fill="#fff" // This can be any other color or #1877f2 as well
-                ></path>
-              </svg>
-              <p className="text-white p-2 "> Sign in with Facebook</p>
-            </button>
+          
             <p className="text-white cursor-pointer" onClick={toggleSignIn}>
               {isSignIn
-                ? "New to Netflix? Sign Up"
+                ? "New to MovieGpt48 ? Sign Up"
                 : "Already registered? Sign In"}
             </p>
           </form>
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }

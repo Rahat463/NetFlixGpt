@@ -1,8 +1,9 @@
 import React from "react"
 
 function VideoTitle({ title, overview, rating }) {
+  //w-screen aspect-video
   return (
-    <div className="absolute bg-gradient-to-r from black w-screen aspect-video">
+    <div className="absolute bg-gradient-to-r from black ">
       <div className="py-80 px-10">
         <span className="flex">
           <p className="text-3xl text-white">{title}</p>
@@ -13,7 +14,7 @@ function VideoTitle({ title, overview, rating }) {
 
         
 
-        <div className="my-10">
+        {/* <div className="my-10">
         <button className="bg-black/70 text-white hover:text-black hover:bg-white px-10 py-5 my-8 rounded shadow-lg ">
           Overview
         </button>
@@ -23,7 +24,7 @@ function VideoTitle({ title, overview, rating }) {
           <button className="bg-black/70 text-white hover:text-black hover:bg-white px-10 py-5 my-8 mx-2 rounded shadow-lg ">
             ℹ️ More info
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   )

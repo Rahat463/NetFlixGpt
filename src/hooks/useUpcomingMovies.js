@@ -1,18 +1,18 @@
 import { options } from "../utils/contants"
 import { useDispatch } from "react-redux"
-import { addNowPlayingMovies } from "../utils/moviesSlice"
+import { addUpcomingMovies } from "../utils/moviesSlice"
 import { useEffect } from "react"
 
-const useNowPlayingMovies=()=>{
+const useUpcomingMovies=()=>{
   //console.log("type= ",)
     const dispatch = useDispatch()
   const fetchMovie = async () => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?page=1`,
+      `https://api.themoviedb.org/3/movie/upcoming?page=1`,
       options
     ).catch((e)=>{console.log(e.message)})
     const json = await response?.json()
-   if(json?.results) dispatch(addNowPlayingMovies(json?.results))
+   if(json?.results) dispatch(addUpcomingMovies(json?.results))
     //console.log("jsonR", json)
   }
   useEffect(() => {
@@ -20,4 +20,4 @@ const useNowPlayingMovies=()=>{
   }, [])
 }
 
-export default useNowPlayingMovies;
+export default useUpcomingMovies;

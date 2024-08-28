@@ -7,6 +7,7 @@ import { auth } from '../utils/firebase.js'
 import { useDispatch } from 'react-redux'
 import {addUser, removeUser} from "../utils/authSlice.js"
 import useToggleSignIn from '../utils/useToggleSignIn.js'
+import MovieTrailer from './MovieTrailer.js'
 function Body() {
   const dispatch=useDispatch()
   const router=createBrowserRouter([
@@ -17,7 +18,12 @@ function Body() {
     {
       path:"/browse",
       element:<Browse/>
+    },
+    {
+      path:"/browse/:movieId",
+      element:<MovieTrailer/>
     }
+
   ])
  
   return (

@@ -2,16 +2,18 @@ import React from "react"
 import useMoviesVideos from "../hooks/useMoviesVideos"
 import { useSelector } from "react-redux"
 function VideoPlayer({ movieId }) {
-  console.log("id::",movieId)
+  //console.log("id::", movieId)
   useMoviesVideos(movieId)
   const trailer = useSelector((store) => store.movies?.trailer)
-  console.log("trailer",trailer)
-  console.log("key== ",trailer?.key)
+  //console.log("trailer", trailer)
+  //console.log("key== ", trailer?.key)
   //const link = `https://www.youtube.com/embed/${trailer?.key}`
   return (
-    <div className="p-10 bg-black w-screen  ">
+    <div className=" bg-black w-screen  ">
       <iframe
-        src={"https://www.youtube.com/embed/"+trailer?.key+"?autoplay=1&mute=1"}
+        src={
+          "https://www.youtube.com/embed/" + trailer?.key + "?autoplay=1&mute=1"
+        }
         className="w-screen aspect-video"
         title="YouTube video player"
         frameBorder="0" // `frameborder` should be camelCased as `frameBorder`
