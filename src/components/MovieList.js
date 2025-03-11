@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 function MovieList({ title, movies }) {
   //console.log("movies: ", movies)
   return (
-    <div>
+    <div className=" sm:p-8">
       <h1 className="text-xl p-1 font-bold mt-2 text-white bg-gradient-to-r from-black">{title}</h1>
       <div className="flex  overflow-x-scroll">
         {movies && (

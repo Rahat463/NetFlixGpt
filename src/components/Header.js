@@ -72,7 +72,7 @@ function Header() {
   // a infinite loop as handleClick() is called as soon as img is rendered so either handleClick is passed by reference using onClick={handleClick()} or through a callback function
   // ()=>handleClick()
   return (
-    <div>
+    <div className=" sm:p-8">
     {status?<div className="w-full absolute flex justify-between bg-gradient-to-b from-slate-900 to-transparent postion z-10">
       <img src={LOGO_URL} className="w-1/6"></img>
       <div className="flex justify-end items-center ">

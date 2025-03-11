@@ -6,9 +6,9 @@ function SecondaryContainer() {
   //console.log(movies)
 
   return (
-    <div className="  bg-black">
+    <div className="  bg-black  sm:p-8">
       {movies && (
-        <div className="relative -mt-56">
+        <div className="relative -mt-56 p-4 sm:p-8">
          
             <MovieList title={"Now Playing Movies"} movies={movies.nowPlayingMovies} />
             <MovieList title={"Top Rated Movies"} movies={movies.topRatedMovies} />

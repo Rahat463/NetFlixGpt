@@ -9,7 +9,7 @@ const ShowMovies=({title})=>{
     //console.log("movies: ",movies)
     //console.log("json",json);
     return(
-        <div className=" w-screen">
+        <div className=" w-screen  sm:p-8">
            {movies&& <MovieList title={title}  movies={movies}/>}
         </div>
     )

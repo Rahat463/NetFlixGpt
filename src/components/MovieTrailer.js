@@ -10,7 +10,7 @@ function MovieTrailer() {
   // useMoviesVideos(resId)
   // const trailer=useSelector(store=>store?.movies?.trailer)
   return (
-    <div>
+    <div className=" sm:p-8">
      <TrailerHeader/>
       <VideoPlayer movieId={movieId} />
     </div>

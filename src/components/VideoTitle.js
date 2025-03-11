@@ -3,7 +3,7 @@ import React from "react"
 function VideoTitle({ title, overview, rating }) {
   //w-screen aspect-video
   return (
-    <div className="absolute bg-gradient-to-r from black ">
+    <div className="absolute bg-gradient-to-r from black  sm:p-8 ">
       <div className="py-80 px-10">
         <span className="flex">
           <p className="text-3xl text-white">{title}</p>
