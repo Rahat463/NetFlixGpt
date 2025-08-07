@@ -9,7 +9,7 @@ function VideoPlayer({ movieId }) {
   //console.log("key== ", trailer?.key)
   //const link = `https://www.youtube.com/embed/${trailer?.key}`
   return (
-    <div className=" bg-black w-screen  sm:p-8 ">
+    <div className=" bg-black w-screen  ">
       <iframe
         src={
           "https://www.youtube.com/embed/" + trailer?.key + "?autoplay=1&mute=1"

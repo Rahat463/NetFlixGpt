@@ -12,19 +12,14 @@ const movieId =  encodeURIComponent(movie?.id);
   //console.log("in main idddd:", movieId)
   //console.log(movie)
   return (
-    <div className=" sm:p-8">
-  <div className="mb-4">
-    <VideoTitle
-      title={movie?.original_title}
-      overview={movie?.overview}
-      rating={movie?.vote_average}
-    />
-  </div>
-  <div className="aspect-w-16 aspect-h-9 w-full bg-black rounded-lg overflow-hidden">
-    <VideoPlayer movieId={movieId} />
-  </div>
-</div>
-
+    <div>
+      <VideoTitle
+        title={movie?.original_title}
+        overview={movie?.overview}
+        rating={movie?.vote_average}
+      />
+       <VideoPlayer movieId={movieId} />
+    </div>
   )
 }
 

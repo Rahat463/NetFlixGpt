@@ -62,71 +62,66 @@ const LogIn = () => {
   // }
 
   const handleButtonClick = () => {
+    const message = validate(email.current.value, password.current.value)
     // if (
     //   email.current.value === "" ||
     //   password.current.value === "" ||
     //   name.current.value === ""
     // )
     //setEmptyFieldMessage("Field is empty")
-
+    setErrorMessage(message)
     // console.log(message)
     // console.log("email: ", email, " password: ", password, "name",name)
     if (!isSignIn) {
-      const message = validate(email.current.value, password.current.value)
-      setErrorMessage(message)
-      if (message == null) {
-        createUserWithEmailAndPassword(
-          auth,
-          email.current.value,
-          password.current.value
-        )
-          .then((userCredential) => {
-            // Signed up
-            const user = userCredential.user
-            //console.log("userUPup: ",user," auth.currentUser: ",auth.currentUser)
-            //console.log("name : ",name.current.value)
-            if (auth.currentUser)
-              updateProfile(auth.currentUser, {
-                displayName: name.current.value,
-                photoURL: PROFILE_URL,
-              })
-                .then(() => {
-                  // Profile updated!
-                  //console.log("userUP: ",user)
-                  const { uid, email, displayName, photoURL } = auth.currentUser
-                  dispatch(
-                    addUser({
-                      uid: uid,
-                      email: email,
-                      displayName: displayName,
-                      photoURL: photoURL,
-                    })
-                  )
-
-                  setErrorMessage(null)
-                  //console.log("update profile!")
-                  // ...
-                })
-                .catch((error) => {
-                  // An error occurred
-                  // ...
-                })
-            //   navigate("/Browse")
-
-            // dispatch(
-            // addItem(user)
-            // )
-            // console.log(user)
-            // ...
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user
+          //console.log("userUPup: ",user," auth.currentUser: ",auth.currentUser)
+          //console.log("name : ",name.current.value)
+         if(auth.currentUser) updateProfile(auth.currentUser, {
+            displayName: name.current.value,
+            photoURL:  PROFILE_URL ,
           })
-          .catch((error) => {
-            const errorCode = error.code
-            const errorMessage = error.message
-            //console.log(errorCode+errorMessage)
-            setErrorMessage(errorCode + errorMessage)
-            // ..
-          })
-      }
+            .then(() => {
+              // Profile updated!
+              //console.log("userUP: ",user)
+              const { uid, email, displayName, photoURL } = auth.currentUser
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              )
+
+              //console.log("update profile!")
+              // ...
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            })
+       //   navigate("/Browse")
+
+          // dispatch(
+          // addItem(user)
+          // )
+          // console.log(user)
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code
+          const errorMessage = error.message
+          //console.log(errorCode+errorMessage)
+          setErrorMessage(errorCode + errorMessage)
+          // ..
+        })
     } else {
       signInWithEmailAndPassword(
         auth,
@@ -137,17 +132,16 @@ const LogIn = () => {
           // Signed in
           const user = userCredential.user
 
-          //  navigate("/Browse")
+        //  navigate("/Browse")
 
-          // console.log(user)
-          setErrorMessage(null)
+         // console.log(user)
           // ...
         })
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
           setErrorMessage(errorCode + errorMessage)
-          // console.log(errorCode + errorMessage)
+         // console.log(errorCode + errorMessage)
         })
     }
   }
@@ -161,62 +155,62 @@ const LogIn = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className="flex justify-center items-center"
+        className="flex justify-center items-center "
       >
         {/* Additional content can go here */}
-        <div className="flex flex-col w-full sm:w-3/12 absolute px-4">
+        <div className="flex flex-col w-3/12 absolute">
           <form
             onSubmit={(e) => {
               e.preventDefault()
             }}
-            className="my-20 sm:my-60 p-8 sm:p-12 bg-black/70 rounded shadow-lg"
+            className=" my-60  p-12 bg-black/70 rounded shadow-lg bg-gradient-to-br"
           >
-            <p className="text-2xl sm:text-3xl text-white my-4">
+            <p className="text-3xl text-white my-4">
               {isSignIn ? "Sign In" : "Sign Up"}
             </p>
             {!isSignIn && (
               <input
                 ref={name}
-                type="text"
+                type=""
                 placeholder="Enter Name"
-                className="p-2 my-2 w-full bg-inherit text-white border-b border-gray-500 focus:outline-none"
-              />
+                className="p-2 my-2 w-full bg-inherit text-white"
+              ></input>
             )}
             <input
               ref={email}
               type="email"
               placeholder="Enter Email"
-              className="p-2 my-4 w-full bg-inherit text-white border-b border-gray-500 focus:outline-none"
-            />
+              className="p-2 my-4 w-full bg-inherit text-white"
+            ></input>
             <input
               ref={password}
               type="password"
-              placeholder="Enter Password"
-              className="p-2 my-4 w-full bg-inherit text-white border-b border-gray-500 focus:outline-none"
-            />
-            <p className="text-red-500">{errorMessage}</p>
+              placeholder="Enter password"
+              className="p-2 my-4 w-full bg-inherit text-white"
+            ></input>
+            <br />
+            {/* {<p className="text-red-500 ">{emptyFieldMessage}</p>} */}
+            <p className="text-red-500 ">{errorMessage}</p>
             <button
-              className="bg-red-600 text-white rounded p-2 my-4 w-full hover:bg-red-700 transition"
+              className="bg-red-600 text-white rounded p-2 my-4 w-full "
               onClick={handleButtonClick}
             >
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>
-            <div className="text-center text-white my-4">
-              <p>Or</p>
-            </div>
-            <p
-              className="text-white cursor-pointer text-center"
-              onClick={toggleSignIn}
-            >
+            <p className="text-white content-center ">
+              <h1 className="ml-28">Or</h1>
+            </p>
+
+          
+            <p className="text-white cursor-pointer" onClick={toggleSignIn}>
               {isSignIn
-                ? "New to MovieGpt48? Sign Up"
+                ? "New to MovieGpt48 ? Sign Up"
                 : "Already registered? Sign In"}
             </p>
           </form>
         </div>
       </div>
-
-      <Footer />
+      <Footer/>
     </div>
   )
 }
